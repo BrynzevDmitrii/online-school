@@ -8,7 +8,7 @@ export default function Header() {
     const[active, setActive] = React.useState(0)
     return (
         <Container>
-            <header className={'flex justify-between items-center'}>
+            <header className={'flex justify-between'}>
                 <Image src={'/logo.png'} alt={'logo'} width={100} height={100} />
                     <ul className={'flex  gap-6 text-black text-2xl'}>
                         { menu.map((item, index) => {
