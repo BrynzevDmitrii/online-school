@@ -1,12 +1,18 @@
 'use client'
-import Container from "@/components/share/container";
+import Container from "@/components/share/Containers/container";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import React from "react";
+import {useResize} from "@/hooks/useResize";
+import MobileHeader from "@/components/share/MobileHeader/mobileHeader";
 export default function Header() {
     const menu = ['Курсы', 'Мастер-классы', 'Акции', 'Контакты', 'О нас']
     const[active, setActive] = React.useState(0)
+    const{ isMobile } = useResize()
+    console.log(isMobile)
     return (
+        isMobile?
+        <MobileHeader/> :
         <Container>
             <header className={'flex justify-between items-center'}>
                 <Image src={'/logo.png'} alt={'logo'} width={100} height={100} />
@@ -14,7 +20,8 @@ export default function Header() {
                         { menu.map((item, index) => {
                             return (
                                 <li key ={item + index} className={'cursor-pointer hover:text-red-400'}>
-                                    <Button variant={active === index ? "default" : "secondary"}>{item}</Button>
+                                    <Button variant={active === index ? "default" : "secondary"}
+                                    onClick={() => setActive(index)}>{item}</Button>
                                 </li>
                             )
                         })}
