@@ -8,11 +8,11 @@ import MobileHeader from '@/components/share/MobileHeader/mobileHeader'
 import Link from 'next/link'
 export default function Header() {
   const menu = [
-    { label: 'Курсы', link: '/courses/1' },
-    { label: 'Мастер-классы', link: '/lesson/1' },
-    { label: 'Акции', link: '/' },
-    { label: 'Контакты', link: '/' },
-    { label: 'О нас', link: '/' },
+    { label: 'Курсы', link: '/courses' },
+    { label: 'Мастер-классы', link: '/lesson' },
+    { label: 'Акции', link: '/stock' },
+    { label: 'Контакты', link: '/contacts' },
+    { label: 'О нас', link: '/aboutUs' },
   ]
   const [active, setActive] = React.useState(0)
   const { isMobile } = useResize()
@@ -22,7 +22,9 @@ export default function Header() {
   ) : (
     <Container>
       <header className={'flex justify-between items-center'}>
-        <Image src={'/logo.png'} alt={'logo'} width={100} height={100} />
+        <Link href={'/'}>
+          <Image src={'/logo.png'} alt={'logo'} width={100} height={100} />
+        </Link>
         <ul className={'flex  gap-6 text-black text-2xl'}>
           {menu.map((item, index) => {
             return (
