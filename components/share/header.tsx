@@ -5,11 +5,18 @@ import { Button } from '../ui/button'
 import React from 'react'
 import { useResize } from '@/hooks/useResize'
 import MobileHeader from '@/components/share/MobileHeader/mobileHeader'
+import Link from 'next/link'
 export default function Header() {
-  const menu = ['Курсы', 'Мастер-классы', 'Акции', 'Контакты', 'О нас']
+  const menu = [
+    { label: 'Курсы', link: '/courses/1' },
+    { label: 'Мастер-классы', link: '/lesson/1' },
+    { label: 'Акции', link: '/' },
+    { label: 'Контакты', link: '/' },
+    { label: 'О нас', link: '/' },
+  ]
   const [active, setActive] = React.useState(0)
   const { isMobile } = useResize()
-  console.log(isMobile)
+
   return isMobile ? (
     <MobileHeader />
   ) : (
@@ -19,9 +26,9 @@ export default function Header() {
         <ul className={'flex  gap-6 text-black text-2xl'}>
           {menu.map((item, index) => {
             return (
-              <li key={item + index} className={'cursor-pointer hover:text-red-400'}>
+              <li key={item.label + index} className={'cursor-pointer hover:text-red-400'}>
                 <Button variant={active === index ? 'default' : 'secondary'} onClick={() => setActive(index)}>
-                  {item}
+                  <Link href={item.link}>{item.label}</Link>
                 </Button>
               </li>
             )

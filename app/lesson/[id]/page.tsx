@@ -1,10 +1,9 @@
-import Container from "@/components/share/container";
-import {LeftFilter} from "@/components/share/leftFilter";
-export default function LessonPage() {
-    return(
-        <Container>
-            <LeftFilter />
-        </Container>
-        )
+import React from 'react'
 
+export default function LessonPage() {
+  return (
+    <>
+      <div>Lesson</div>
+    </>
+  )
 }
