@@ -6,19 +6,22 @@ import React from 'react'
 import { useResize } from '@/hooks/useResize'
 import MobileHeader from '@/components/share/MobileHeader/mobileHeader'
 import Link from 'next/link'
+import globalStore from '@/app/store/globalStore'
 export default function Header() {
-  const menu = [
-    { label: 'Курсы', link: '/courses' },
-    { label: 'Мастер-классы', link: '/lesson' },
-    { label: 'Акции', link: '/stock' },
-    { label: 'Контакты', link: '/contacts' },
-    { label: 'О нас', link: '/aboutUs' },
-  ]
   const [active, setActive] = React.useState(0)
   const { isMobile } = useResize()
+  const isAuth = true
+
+  const setActiveMenuItem = globalStore((state) => state.setActiveMenuItem)
+  const menu = globalStore((state) => state.menu)
+
+  const activeItem = (index: number) => {
+    setActive(index)
+    setActiveMenuItem(menu[index].label)
+  }
 
   return isMobile ? (
-    <MobileHeader />
+    <MobileHeader isAuth={isAuth} menu={menu} />
   ) : (
     <Container>
       <header className={'flex justify-between items-center'}>
@@ -29,7 +32,7 @@ export default function Header() {
           {menu.map((item, index) => {
             return (
               <li key={item.label + index} className={'cursor-pointer hover:text-red-400'}>
-                <Button variant={active === index ? 'default' : 'secondary'} onClick={() => setActive(index)}>
+                <Button variant={active === index ? 'default' : 'secondary'} onClick={() => activeItem(index)}>
                   <Link href={item.link}>{item.label}</Link>
                 </Button>
               </li>
@@ -37,8 +40,11 @@ export default function Header() {
           })}
         </ul>
         <div className={'flex items-center gap-4'}>
-          <div>{'Регистрация / Войти'}</div>
-          <Image src={'/icons8-user-48.png'} alt={'user-icon'} width={25} height={25} />
+          {isAuth ? (
+            <Image src={'/icons8-user-48.png'} alt={'user-icon'} width={25} height={25} />
+          ) : (
+            <div>{'Регистрация / Войти'}</div>
+          )}
         </div>
       </header>
     </Container>
