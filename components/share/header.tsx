@@ -10,8 +10,7 @@ import globalStore from '@/app/store/globalStore'
 export default function Header() {
   const [active, setActive] = React.useState(0)
   const { isMobile } = useResize()
-  const isAuth = true
-
+  const isAuth = globalStore((state) => state.isAuth)
   const setActiveMenuItem = globalStore((state) => state.setActiveMenuItem)
   const menu = globalStore((state) => state.menu)
 
