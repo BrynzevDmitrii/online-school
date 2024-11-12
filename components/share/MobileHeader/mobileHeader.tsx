@@ -23,7 +23,8 @@ export default function MobileHeader(props: Props) {
             type='checkbox'
             id='burger-checkbox'
             className={styles['burger-checkbox']}
-            checked={() => isActiveDrawer()}
+            checked={isActiveDrawer}
+            onChange={() => setIsActiveDrawer(!isActiveDrawer)}
           />
           <label htmlFor='burger-checkbox' className={styles['burger']}></label>
         </div>

@@ -2,7 +2,7 @@
 import globalStore from '@/app/store/globalStore'
 import { useResize } from '@/hooks/useResize'
 import { cn } from '@/lib/utils'
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './style.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -12,11 +12,16 @@ function Drawer() {
   const close = globalStore((state) => state.close)
   const activeItem = globalStore((state) => state.activeMenuItem)
   const { isMobile } = useResize()
-  const menu = globalStore((state) => state.menu)
   const setActiveMenuItem = globalStore((state) => state.setActiveMenuItem)
+  const setMobileMenu = globalStore((state) => state.setMobileMenu)
+  useEffect(() => {
+    setMobileMenu()
+  }, [])
 
-  const handlerClickToMenuItem = (index) => {
-    setActiveMenuItem(menu[index].label)
+  const mobileMenu = globalStore((state) => state.mobileMenu)
+
+  const handlerClickToMenuItem = (index: number) => {
+    setActiveMenuItem(mobileMenu[index].label)
     close()
   }
   const handlerClickToHome = () => {
@@ -37,7 +42,7 @@ function Drawer() {
       </div>
       <div className={styles.drawer_content}>
         <div className={styles.drawer_body}>
-          {menu.map((item, index) => {
+          {mobileMenu.map((item: { label: string; link: string }, index: number) => {
             return (
               <Link href={item.link} key={item.label} onClick={() => handlerClickToMenuItem(index)}>
                 {item.label}
