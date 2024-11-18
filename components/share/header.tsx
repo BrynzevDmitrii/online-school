@@ -23,7 +23,7 @@ export default function Header() {
     <MobileHeader isAuth={isAuth} menu={menu} />
   ) : (
     <Container>
-      <header className={'flex justify-between items-center'}>
+      <header className={'flex justify-between items-center px-5'}>
         <Link href={'/'}>
           <Image src={'/logo.png'} alt={'logo'} width={100} height={100} />
         </Link>
