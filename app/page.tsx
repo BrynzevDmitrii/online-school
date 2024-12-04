@@ -1,22 +1,21 @@
+'use client'
 import React from 'react'
-import Card from '@/components/share/Cards/card'
-import BodyContainer from '@/components/share/Containers/bodyContainer'
-import Image from 'next/image'
+import Sort from '../components/share/Sort/sort'
+import BodyContainer from '../components/share/Containers/bodyContainer'
+import Card, { CardProps } from '../components/share/Cards/card'
+import globalStore from './store/globalStore'
 
 export default function Home() {
+  const cardList = globalStore((state) => state.cardList)
+
   return (
     <>
       <BodyContainer>
-        <div className='flex justify-end'>
-          <Image src={'/filter-icon.png'} alt={'filter'} width={24} height={24} />
-        </div>
+        <Sort />
         <BodyContainer className='body_container'>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {cardList.map((card: CardProps, index) => (
+            <Card key={index} props={card} />
+          ))}
         </BodyContainer>
       </BodyContainer>
     </>

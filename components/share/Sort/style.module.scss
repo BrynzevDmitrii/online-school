@@ -1,0 +1,64 @@
+.sort {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
+
+  &__title {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #ffffff;
+    background-color: blueviolet;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  &__list {
+    position: absolute;
+    z-index: 100;
+    right: 140px;
+    gap: 10px;
+    padding: 10px;
+    opacity: 0;
+  }
+
+  &__checkbox {
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2px 5px;
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__reset {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #ffffff;
+    background-color: blueviolet;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: center;
+    opacity: 0;
+  }
+}
+
+.active {
+  background-color: blueviolet;
+  color: #ffffff;
+}
+
+.active__sort {
+  display: flex;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}

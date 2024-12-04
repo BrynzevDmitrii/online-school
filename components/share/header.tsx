@@ -20,20 +20,24 @@ export default function Header() {
   }
 
   return isMobile ? (
-    <MobileHeader isAuth={isAuth} menu={menu} />
+    <MobileHeader isAuth={isAuth} />
   ) : (
     <Container>
       <header className={'flex justify-between items-center px-5'}>
         <Link href={'/'}>
-          <Image src={'/logo.png'} alt={'logo'} width={100} height={100} />
+          <Image src={'/logo.png'} alt={'logo'} width={50} height={50} />
         </Link>
         <ul className={'flex  gap-6 text-black text-2xl'}>
           {menu.map((item, index) => {
             return (
-              <li key={item.label + index} className={'cursor-pointer hover:text-red-400'}>
-                <Button variant={active === index ? 'default' : 'secondary'} onClick={() => activeItem(index)}>
-                  <Link href={item.link}>{item.label}</Link>
-                </Button>
+              <li
+                key={item.label + index}
+                className={'cursor-pointer hover:text-red-400'}
+                onClick={() => activeItem(index)}
+              >
+                <Link href={item.link}>
+                  <Button variant={active === index ? 'default' : 'secondary'}>{item.label}</Button>
+                </Link>
               </li>
             )
           })}

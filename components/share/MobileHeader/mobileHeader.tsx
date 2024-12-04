@@ -6,7 +6,6 @@ import globalStore from '@/app/store/globalStore'
 
 type Props = {
   isAuth: boolean
-  menu: { label: string; link: string }[]
 }
 export default function MobileHeader(props: Props) {
   const isActiveDrawer = globalStore((state) => state.isOpen)
