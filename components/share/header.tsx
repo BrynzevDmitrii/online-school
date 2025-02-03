@@ -28,7 +28,7 @@ export default function Header() {
           <Image src={'/logo.png'} alt={'logo'} width={50} height={50} />
         </Link>
         <ul className={'flex  gap-6 text-black text-2xl'}>
-          {menu.map((item, index) => {
+          {menu.map((item: { label: string; link: string }, index: number) => {
             return (
               <li
                 key={item.label + index}
